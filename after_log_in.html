@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<style>
+         #ppic{
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+      margin-left: 90px;
+     }
+     .name{
+        display: flex;
+        justify-content: center;
+     }
+     .chatbtn{
+      width: 300px;
+     }
+
+</style>
+<body>
+    <div class="main" style="margin-top: 130px;">
+
+
+
+
+    <img style="display: flex; justify-content: center; margin-left: 650px;" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" id="ppic" alt="">
+  <div class="name">
+    <p style="font-family: Monaco, Consolas, “Lucida Console”, monospace; font-size: 25px;">Name :</p>
+    <h1 id="namee" style="margin-left: 10px; font-family: “Lucida Console”, “Lucida Sans Typewriter”, Monaco, “Bitstream Vera Sans Mono”, monospace;" ></h1>
+
+</div>
+<div class="ema" style="display: flex; justify-content: center;" >
+<p style="font-family: Monaco, Consolas, “Lucida Console”, monospace; font-size: 25px;">Email :</p>
+    <h1 id="em" style="margin-left: 10px; font-family: “Lucida Console”, “Lucida Sans Typewriter”, Monaco, “Bitstream Vera Sans Mono”, monospace;" ></h1>
+</div>
+    <p style="display: flex; justify-content: center;" id="emailv" >Email not verified</p>
+    <div style="display: flex; justify-content: center; " >
+      <button type="button" id="verify" class="btn btn-outline-success ">verify you email</button>
+    <br>
+
+   
+</div>
+<br>
+<div style="display: flex; justify-content: center;" >
+  <button type="button" id="chatbtn" class="btn btn-outline-primary chatbtn">CHAT NOW</button>
+</div>
+</div>
+
+    <script type="module" >
+
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+import { getAuth, onAuthStateChanged, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getStorage, ref, uploadBytes, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+  
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDD5ycwuKCcnI6hX-RAO3YenYU70wVKdgM",
+    authDomain: "verification-87605.firebaseapp.com",
+    projectId: "verification-87605",
+    storageBucket: "verification-87605.appspot.com",
+    messagingSenderId: "567528485928",
+    appId: "1:567528485928:web:3903c0cf86f90338ccb11d",
+    measurementId: "G-CS1H37WWR9"
+  };
+
+
+
+
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const auth = getAuth();
+  const db = getFirestore()
+  const storage = getStorage();
+
+  var namee = document.getElementById("namee")
+  var em = document.getElementById("em")
+  var verify = document.getElementById("verify")
+  var ev = document.getElementById("emailv")
+  var ppic = document.getElementById("ppic")
+  var next = document.getElementById("next")
+  var chatbtn = document.getElementById("chatbtn")
+
+
+
+  onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            // User is signed in, you can access the user object
+            console.log("User is signed in:", user);
+
+            const docRef = doc(db, "user_data", user.uid);
+            const docSnap = await getDoc(docRef);
+            var t =  docSnap.data();
+ var id1 = user
+
+ const starsRef = ref(storage, `user_images/${id1.uid}/image`);
+console.log(starsRef)
+// Get the download URL
+getDownloadURL(starsRef)
+  .then(async(url) => {
+    // Insert url into an <img> tag to "download"
+    console.log(url)
+    ppic.src = url
+
+    await setDoc(doc(db, "user_data", id1.uid), {
+           Image: url
+     });
+
+  })
+  .catch((error) => {
+    // A full list of error codes is available at
+    // https://firebase.google.com/docs/storage/web/handle-errors
+    switch (error.code) {
+      case 'storage/object-not-found':
+        // File doesn't exist
+        break;
+      case 'storage/unauthorized':
+        // User doesn't have permission to access the object
+        break;
+      case 'storage/canceled':
+        // User canceled the upload
+        break;
+
+      // ...
+
+      case 'storage/unknown':
+        // Unknown error occurred, inspect the server response
+        break;
+        console.log(error)
+    }
+  });
+
+
+            if (docSnap.exists()) {
+                console.log("Document data:", docSnap.data());
+
+                
+
+
+ namee.innerText= t.name
+      em.innerText= t.email
+
+
+
+            } else {
+                console.log("No such document!");
+            }
+        } else {
+            // User is signed out
+            console.log("User is signed out");
+        }
+    });
+
+
+var ver = auth.currentUser
+
+
+
+verify.addEventListener("click", function(){
+    sendEmailVerification(auth.currentUser)
+  .then(() => {
+    // Email verification sent!
+ ver = auth.currentUser
+console.log(ver.emailVerified)
+
+    // ...
+
+    if(ver.emailVerified== true){
+        console.log("good")
+        ev.innerText="email verifyed"
+      
+    }
+  });
+})
+
+
+// chat now btn
+
+chatbtn.addEventListener("click", function(){
+window.location = "chatapp.html"
+})
+
+
+
+    </script>
+</body>
+</html>

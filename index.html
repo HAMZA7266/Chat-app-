@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .btns{
+display: flex;
+width: 180px;
+margin-top: 370px;
+justify-content: space-between;
+margin-left: 620px;
+ }
+ .btn{
+    border: none;
+    background-color: rgb(57, 156, 255);
+    color: white;
+    font-size: 16px;
+    font-family:cursive;
+    width: 80px;
+    height: 50px;
+    border-radius: 10px;
+    cursor: pointer;
+ }
+ .btn2{
+    border: none;
+    background-color: rgb(57, 156, 255);
+    color: white;
+    font-size: 16px;
+    font-family:cursive;
+    width: 80px;
+    height: 50px;
+    border-radius: 10px;
+    cursor: pointer;
+ }
+ .btn:hover{
+    background-color:rgb(46, 138, 230) ;
+ }
+ .btn2:hover{
+    background-color:rgb(46, 138, 230) ;
+ }
+</style>
+<body>
+<div class="btns" >
+    <button class="btn" onclick="login()" >Login</button>
+    <button class="btn2" onclick="reg()" >Register</button>
+</div>
+
+
+    
+
+
+    <script>
+        function login(){
+            window.location="loginpage.html"
+        }
+        function reg(){
+            window.location="regpage.html"
+        }
+    </script>
+</body>
+</html>

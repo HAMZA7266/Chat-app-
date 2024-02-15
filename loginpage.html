@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<style>
+    .back{
+        border: none;
+        background-color: none;
+        background: none;
+        cursor: pointer;
+        font-size: 20px;
+    }
+    #lpass{
+        margin-left: 20px;
+        height: 30px;
+        padding-left: 10px;
+        width: 200px;
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+        }
+        #lpass:focus{
+   outline: none;
+   padding-left: 10px;
+         }
+    #lemail{
+        margin-left: 55px;
+        height: 30px;
+        padding-left: 10px;
+        width: 200px;
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+        }
+        #lemail:focus{
+   outline: none;
+   padding-left: 10px;
+         }
+         .log{
+    border: none;
+    background-color: rgb(57, 156, 255);
+    color: white;
+    font-size: 16px;
+    font-family:cursive;
+    width: 80px;
+    height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 110px;
+ }
+ .form{
+  margin-top: 130px;
+    display: flex;
+    justify-content: center;
+
+    
+ }
+</style>
+<body>
+   <a href="index.html"> <button class="back" >Back</button></a>
+
+   <div class="form">
+    <div class="f">
+    <h1 style="font-family: Futura, “Trebuchet MS”, Arial, sans-serif; margin-left: 100px;" >Login</h1><br><br>
+<div class="e">
+    <label style="font-family: cursive; font-size: 20px;" for="">Email : 
+    <input type="text" placeholder="Email" id="lemail"></label>
+</div>
+ <br><br>
+<div class="p">
+    <label style="font-family: cursive; font-size: 20px;" for="">Password : 
+    <input type="password" placeholder="Password" id="lpass"></label>
+</div>
+    <br>
+    <br><br>
+    <button id="log" class="log">Login</button>
+</div>
+   </div>
+
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDD5ycwuKCcnI6hX-RAO3YenYU70wVKdgM",
+    authDomain: "verification-87605.firebaseapp.com",
+    projectId: "verification-87605",
+    storageBucket: "verification-87605.appspot.com",
+    messagingSenderId: "567528485928",
+    appId: "1:567528485928:web:3903c0cf86f90338ccb11d",
+    measurementId: "G-CS1H37WWR9"
+  };
+
+
+
+
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const auth = getAuth();
+
+ var log = document.getElementById("log")
+ log.addEventListener("click", function(){
+
+    signInWithEmailAndPassword(auth, lemail.value, lpass.value)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    // ...
+    console.log(user)
+    window.location="after_log_in.html"
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorMessage)
+
+    Swal.fire({
+  icon: "error",
+  title: "Oops...",
+  text: errorCode,
+
+});
+
+  });
+
+ })
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css"
+  rel="stylesheet"
+/>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        .back{
+            border: none;
+            background-color: none;
+            background: none;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        .lpass{
+            margin-left: 20px;
+            height: 30px;
+            padding-left: 10px;
+            width: 200px;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            }
+            .lpass:focus{
+       outline: none;
+       padding-left: 10px;
+             }
+        .lemail{
+            margin-left: 55px;
+            height: 30px;
+            padding-left: 10px;
+            width: 200px;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            }
+            .lemail:focus{
+       outline: none;
+       padding-left: 10px;
+             }
+             .log{
+        border: none;
+        background-color: rgb(57, 156, 255);
+        color: white;
+        font-size: 16px;
+        font-family:cursive;
+        width: 80px;
+        height: 40px;
+        border-radius: 10px;
+        cursor: pointer;
+        margin-left: 110px;
+     }
+     .form{
+      margin-top: 10px;
+        display: flex;
+        justify-content: center;
+    
+        
+     }
+     .profilep{
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+      margin-left: 90px;
+     }
+     .b{
+        margin-left: 95px;
+     }
+
+    </style>
+</head>
+    <body>
+       <a href="index.html"> <button class="back" >Back</button></a>
+    
+       <div class="form">
+        <div class="f">
+        <h1 style="font-family: Futura, “Trebuchet MS”, Arial, sans-serif; margin-left: 100px;" >Register</h1><br><br>
+    <div class="e">
+
+
+
+
+<img id="profilepic" class="profilep" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="">
+<br><br>
+
+
+<div  class="btn btn-primary btn-rounded b" id="change1">
+    <label class="form-label text-white m-1" for="customFile1">Choose file</label>
+    <input type="file" class="form-control d-none" id="customFile1"  />
+</div>
+<!-- <input  id="file" type="file"> -->
+
+
+
+<br><br><br>
+
+        <label style="font-family: cursive; font-size: 20px;" for="">Name : </label>
+        <input required type="text" placeholder="Name" class="lemail" id="name">
+    </div>
+     <br>
+
+     
+    <div class="p">
+        <label style="font-family: cursive; font-size: 20px; " for="">Email : </label>
+        <input required style="margin-left: 58px;" id="email" type="text" placeholder="hello@gmail.com" class="lpass">
+    </div>
+     <br>
+
+     
+    <div class="p">
+        <label style="font-family: cursive; font-size: 20px;" for="">Password : </label>
+        <input required style="margin-left: 20px;" id="pass" type="password" placeholder="Password" class="lpass">
+    </div>
+     <br>
+
+     
+
+
+
+
+        <br>
+        <button id="regg" class="log">Register</button>
+    </div>
+       </div>
+
+       <script type="module" >
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+  import { doc, setDoc, getFirestore, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"; 
+ import { getStorage, ref, uploadBytes, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDD5ycwuKCcnI6hX-RAO3YenYU70wVKdgM",
+    authDomain: "verification-87605.firebaseapp.com",
+    projectId: "verification-87605",
+    storageBucket: "verification-87605.appspot.com",
+    messagingSenderId: "567528485928",
+    appId: "1:567528485928:web:3903c0cf86f90338ccb11d",
+    measurementId: "G-CS1H37WWR9"
+  };
+
+  // Initialize Firebase
+
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const auth = getAuth();
+  const db = getFirestore()
+  
+  
+
+  const storage = getStorage();
+var url = ""
+var user1 = ""
+
+var regg = document.getElementById("regg")
+  var name = document.getElementById("name")
+  var email = document.getElementById("email")
+  var pass = document.getElementById("pass")
+  var btn = document.getElementById("change1")
+var fil = document.getElementById("customFile1");
+var profilepic = document.getElementById("profilepic");
+
+
+
+
+const urlfunction = (file)=>{
+return new Promise((resolve, reject) => {
+  const storageRef = ref(storage, `user_images/${user.uid}/image`)
+
+const uploadTask = uploadBytesResumable(storageRef, `${file}`);
+
+uploadTask.on('state_changed', 
+  (snapshot) => {
+   
+    const progress = (snapshot.bytes / snapshot.totalBytes) * 100;
+    console.log('Upload is ' + progress + '% done');
+    switch (snapshot.state) {
+      case 'paused':
+        console.log('Upload is paused');
+        break;
+      case 'running':
+        console.log('Upload is running');
+      
+        break;
+    }
+  }, 
+  (error) => {
+    // Handle unsuccessful uploads
+    reject(error)
+  }, 
+  () => {
+    // Handle successful uploads on complete
+    // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+       resolve(downloadURL)
+    });
+  }
+);
+})
+}
+
+// creating url with function
+
+
+
+// geting register adn uid
+
+// regg.addEventListener("click", async function () {
+//     try {
+//         const userCredential = await createUserWithEmailAndPassword(auth, email.value, pass.value, name.value, );
+//         const user = userCredential.user;
+
+//         // Save user data in Firestore
+//         await setDoc(doc(db, "user_data", user.uid), {
+//             name: name.value,
+//             email: email.value,
+//             pass: pass.value,
+     
+//         });
+
+//         // Upload profile picture with user UID as part of the path
+//         const imageStorageRef = ref(storage, `user_images/${user.uid}/image`);
+//         await uploadBytes(imageStorageRef, fil.files[0]);
+
+//         console.log("User registered successfully:", user);
+//         window.location = "loginpage.html";
+//     } catch (error) {
+//         console.error("Registration error:", error);
+//     }
+// }); 
+
+
+
+regg.addEventListener("click", async function () {
+    try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email.value, pass.value, name.value);
+        const user = userCredential.user;
+
+        // Save user data in Firestore
+        const userData = {
+            name: name.value,
+            email: email.value,
+            password : pass.value,
+notifications : '',
+            // Do not store the password in Firestore for security reasons
+        };
+
+        const userDocRef = doc(db, "user_data", user.uid);
+        await setDoc(userDocRef, userData);
+
+        // Upload profile picture with user UID as part of the path
+        const imageStorageRef = ref(storage, `user_images/${user.uid}/image`);
+        const fileSnapshot = await uploadBytes(imageStorageRef, fil.files[0]);
+
+        // Get the download URL of the uploaded file
+        const downloadURL = await getDownloadURL(fileSnapshot.ref);
+
+        // Store download link in Firestore
+        await updateDoc(userDocRef, { profilePicture: downloadURL });
+
+        console.log("User registered successfully:", user);
+        window.location.href = "loginpage.html";
+    } catch (error) {
+        console.error("Registration error:", error);
+
+        Swal.fire({
+  icon: "error",
+  title: "Oops...",
+  text: error.code,
+  
+});
+    }
+});
+
+
+console.log(user1)
+
+
+
+
+btn.addEventListener("change",async()=>{
+var pic = fil.files[0]
+var u =  URL.createObjectURL(pic)
+profilepic.src = u
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                 
+    </script>
+</body>
+</html>

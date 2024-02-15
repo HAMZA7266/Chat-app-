@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment-with-locales.min.js" integrity="sha512-4F1cxYdMiAW98oomSLaygEwmCnIP38pb4Kx70yQYqRwLVCs3DbRumfBq82T08g/4LJ/smbFGFpmeFlQgoDccgg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<style>
+    body{
+        background: #eeeeee;
+    }
+    /* .main{
+
+height: 650px;
+width: 396px;
+margin-top: 40px;
+margin-left: 60px;
+background: white;
+    }
+    .users{
+
+        width: 400px;
+        height: 650px;
+        background: white;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    } */
+
+
+    .main {
+    height: 650px;
+    width: 396px;
+    margin-top: 40px;
+    margin-left: 60px;
+    background: white;
+}
+
+.users {
+    width: 400px;
+    height: 650px;
+    background: white;
+
+}
+
+#msgarea{
+  background: rgb(255, 255, 255);
+}
+    .you{
+
+        height: 100px;
+        background: white;
+        display: flex;
+    }
+    .top{
+
+        width: 900px;
+        margin-left: 400px;
+        height: 90px;
+        margin-top: -652px;
+        background: white;
+    }
+    .msgbox{
+
+        width: 900px;
+        margin-left: 398px;
+background: white;
+      
+        margin-top: -15px;
+    }
+    #yourimg{
+        width: 70px;
+        height: 70px;
+        border-radius: 50% ;
+        margin-left: 10px;
+        margin-top: 15px;
+    }
+    #chat-user-pic2{
+        width: 50px;
+        height: 50px;
+        border-radius: 50% ;
+        margin-top: 5px;
+        margin-left: -10px;
+    }
+    #chat-user-pic{
+        width: 60px;
+        height: 60px;
+        border-radius: 50% ;
+        margin-top: -12px;
+        margin-left: 10px;
+    }
+    #yname{
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+   font-size: 22px;
+   margin-left: 10px;
+   margin-top: 20px;
+   }
+
+   #yemail{
+margin-top: 5px;
+margin-left: 10px;
+
+font-weight: lighter;
+font-size: 18px;
+   }
+   .mm{
+    margin-top: 40px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+   }
+   .b:hover{
+background: #f5f5f5;
+cursor: pointer;
+   }
+   .b{
+    width: 380px;
+    margin-left: 10px; 
+    position: relative;
+   }
+   .topuser{
+    display: flex;
+   }
+   #name{
+    font-size: 22px;
+   }
+   #email{
+    font-size: 15px;
+    
+   }
+   .topuserdata{
+    margin-left: 10px;
+    margin-top: -10px;
+   }
+   .margin{
+    margin-right: 150px;
+   }
+   .padding{
+    padding-right: 10px;
+   }
+   .msg{
+    width: 800px;
+   }
+   .down{
+    margin-top: 520px;
+    margin-left: 40px;
+   }
+   .sendbtn{
+    margin-left: 10px;
+    width: 100px;
+   }
+   .chats{
+
+    margin-top: -550px;
+background-color: rgb(255, 255, 255);
+    height: 490px;
+overflow-y: scroll;
+overflow: auto;
+display: flex;
+flex-direction: column-reverse;
+
+   }
+   .leftchat{
+
+    margin-top: 10px;
+ margin-right: 570px;
+    margin-left: 20px;
+    padding-right: 30px;
+padding-left: 10px;
+padding-top: 10px;
+padding-bottom: 10px;
+    background:  rgb(108, 194, 255);
+    border-radius: 10px;
+    font-weight: bolder;
+   }
+   .white{
+    background: white;
+    height: 57px;
+
+   }
+   .rightchat{
+
+
+margin-left: 600px;
+padding-left: 10px;
+padding-top: 10px;
+padding-bottom: 10px;
+background:  rgb(154, 213, 255);
+border-radius: 10px;
+font-weight: bolder;
+margin-right: 20px;
+
+
+
+}
+.timeshown{
+  font-size: 12px;
+
+justify-content: end;
+margin-left: 10px;
+}
+
+
+
+/* 
+@media only screen and (max-width: 480px) {
+.users{
+margin-top: -30px;
+margin-left: -30px;
+
+}
+
+
+} */
+@media only screen and (max-width: 480px) {
+    .main {
+        width: 400px;
+        margin: 0;
+    }
+
+#msgarea{
+ margin-top: 700px; 
+ background-color: white;
+}
+.leftchat{
+  margin-right: 690px;
+  margin-left: 5px;
+
+}
+.rightchat{
+  margin-right: 505px;
+  margin-left: 200px;
+}
+.chats{
+  background: none;
+}
+.white{
+  width: 400px;
+}
+.down{
+  margin-left: 10px;
+  width: 400px;
+}
+.sendbtn{
+  margin-left: 15px;
+  width: 100px;
+  margin-right: 20px;
+}
+ .msgbox {
+        margin-left: 0;
+    }
+
+    .top {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    /* Adjust other styles for better mobile experience */
+    .list-group-item {
+        width: 100%;
+        
+    }
+
+    #yourimg {
+        margin-left: 5px; /* Adjust as needed */
+    }
+
+    /* Add additional responsive styles as needed */
+}
+.online{
+
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+position: absolute;
+  top: 40px;
+  left: 340px;
+}
+.green_dot{
+background-color: green;
+}
+.red-dot{
+background-color: red;
+}
+.notification{
+position: absolute;
+right: 20px;
+}
+
+
+</style>
+<body>
+
+    <!-- the main div -->
+    <div class="main" id="main">
+
+        
+      <!-- the div of the users -->
+
+        
+<div class="users">
+
+<!-- you -->
+<div class="you">
+    
+<img id="yourimg" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="">
+<div class="data">
+<h4 id="yname" ></h4>
+<h5 id="yemail" ></h5>
+</div></div>
+
+
+
+<ul class="list-group mm" id="chat-list" >
+
+
+</ul>
+
+
+
+
+
+</div>
+
+
+<div id="msgarea" style="display: none;" > 
+
+
+
+
+<!-- div of top user -->
+<div class="top">
+
+<div class="card-body topuser">
+  <img id="chat-user-pic" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="">
+  <div class="topuserdata" >
+    <h4 id="name" class="fw-bold"></h4>
+    <h4 id="email"  ></h4>
+
+  </div>
+
+</div>
+
+
+</div>
+<!-- div of the messeges -->
+    
+<div class="msgbox" >
+<div class="white">
+  <div class="input-group mb-3 msg down">
+    <input type="text" class="form-control  msg" id="msg" placeholder="Enter your messege" aria-label="Recipient's username" aria-describedby="basic-addon2">
+    <div class="input-group-append">
+      <button class="btn btn-outline-success sendbtn"  type="button">Send</button></div>
+    </div>
+  </div>
+
+<div id="chat" class="chats">
+
+
+</div>
+
+
+</div>
+</div>
+
+
+</div>
+
+<!-- javascript -->
+
+<script type="module" >
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+  import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+  import { doc, setDoc, getFirestore,getDoc, query, where, collection,increment, getDocs,updateDoc, addDoc,orderBy, serverTimestamp, onSnapshot  } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"; 
+ import { getStorage, ref, uploadBytes, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDD5ycwuKCcnI6hX-RAO3YenYU70wVKdgM",
+    authDomain: "verification-87605.firebaseapp.com",
+    projectId: "verification-87605",
+    storageBucket: "verification-87605.appspot.com",
+    messagingSenderId: "567528485928",
+    appId: "1:567528485928:web:3903c0cf86f90338ccb11d",
+    measurementId: "G-CS1H37WWR9"
+  };
+
+  // Initialize Firebase
+
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const auth = getAuth();
+  const db = getFirestore()
+  const storage = getStorage()
+  
+var youimg = document.getElementById("yourimg")
+var yname = document.getElementById("yname")
+var yemail = document.getElementById("yemail")
+var tname = document.getElementById("name")
+var msg = document.getElementById("msg")
+var temail = document.getElementById("email")
+var tpic = document.getElementById("chat-user-pic")
+var chat = document.getElementById("chat")
+var main = document.getElementById("main")
+var msgarea = document.getElementById("msgarea")
+
+
+
+
+let uid;
+
+  onAuthStateChanged(auth, async(user) => {
+  if (user) {
+
+    uid = user.uid;
+    console.log(user)
+
+    const docRef = doc(db, "user_data", uid);
+const docSnap = await getDoc(docRef);
+
+if (docSnap.exists()) {
+  console.log("Document data:", docSnap.data());
+
+  var data = docSnap.data()
+yname.innerText =data.name
+yemail.innerText =data.email
+
+
+  const starsRef = ref(storage, `user_images/${uid}/image`);
+console.log(starsRef)
+// Get the download URL
+getDownloadURL(starsRef)
+  .then((url) => {
+ console.log(url)
+ youimg.src = url
+
+  })
+  .catch((error) => {
+    // A full list of error codes is available at
+    // https://firebase.google.com/docs/storage/web/handle-errors
+    switch (error.code) {
+      case 'storage/object-not-found':
+        // File doesn't exist
+        break;
+      case 'storage/unauthorized':
+        // User doesn't have permission to access the object
+        break;
+      case 'storage/canceled':
+        // User canceled the upload
+        break;
+
+      // ...
+
+      case 'storage/unknown':
+        // Unknown error occurred, inspect the server response
+        break;
+    }
+  });
+
+
+} else {
+  // docSnap.data() will be undefined in this case
+  console.log("No such document!");
+}
+
+
+
+
+
+const getdata = async (email) => {
+  const q = query(
+    collection(db, "user_data"),
+    orderBy("email"),
+    where("email", "!=", email),
+    orderBy("isActive", "desc")
+  );
+
+  const unsubscribe = onSnapshot(q, async (querySnapshot) => {
+    const users = [];
+    querySnapshot.forEach((doc) => {
+      users.push({ ...doc.data(), id: doc.id });
+    });
+
+    var chatlist = document.getElementById("chat-list");
+    chatlist.innerHTML = "";
+    for (var i = 0; i < users.length; i++) {
+  const { name, email, profilePicture, isActive, id, notifications } = users[i];
+
+  // Fetch notifications data for the current user
+  const notificationsRef = doc(db, `user_data/${uid}/notifications/${id}`);
+  const notificationsDoc = await getDoc(notificationsRef);
+  const notificationsData = notificationsDoc.exists() ? notificationsDoc.data() : {};
+
+  // Extract user IDs who sent notifications
+  const senders = Object.keys(notificationsData);
+  const hasNotifications = senders.includes(id);
+  const notificationCount = hasNotifications ? notificationsData[id].count : 0;
+  // Check if the current user's ID is in the senders array
+  console.log(hasNotifications)
+  console.log(senders)
+  console.log(notificationsData)
+
+  chatlist.innerHTML += `
+    <li onclick="selecteduser('${name}', '${email}', '${profilePicture}', '${id}', '${isActive}', '${notifications}')" 
+        class="list-group-item d-flex justify-content-between align-items-start b">
+      <div class="padding">
+        <img id="chat-user-pic2" src=${profilePicture} alt="">
+      </div>
+      <div class="fw-bold margin">
+        ${name}<br />
+        ${email}
+      </div>
+      ${hasNotifications ? `<span class="notification badge rounded-pill bg-danger">${notificationCount}</span>` : ""}      <div class="online ${isActive ? 'green_dot' : 'red-dot'}"></div>
+    </li>`;
+
+    }
+  });
+};
+
+
+getdata(data.email)
+
+  } else {
+    // User is signed out
+    // ...
+  }
+});
+let selecteduserid;
+
+const selecteduser = async(name, email, profilePicture, userid, notifications) =>{
+  selecteduserid = userid
+
+  
+
+
+
+
+
+  let chatid;
+if(uid < selecteduserid){
+chatid = uid + selecteduserid
+}
+else{
+  chatid = selecteduserid + uid
+}
+getallmsgs(chatid)
+
+
+msgarea.style.display="block"
+
+
+  // console.log('sellected_user_uid '+userid)
+  // console.log('your_uid '+uid)
+ 
+tname.innerText = name
+temail.innerText = email
+tpic.src = profilePicture
+
+
+
+
+
+
+  }
+
+
+
+window.selecteduser = selecteduser
+
+let notification;
+
+msg.addEventListener("keydown", async (e) => {
+    if (e.keyCode === 13) {
+        let chatid;
+        if (uid < selecteduserid) {
+            chatid = uid + selecteduserid;
+        } else {
+            chatid = selecteduserid + uid;
+        }
+
+        const docRef = await addDoc(collection(db, "messeges"), {
+            messege: msg.value,
+            chatID: chatid,
+            time: serverTimestamp(),
+            sender_id: uid,
+            receiver_id: selecteduserid
+        });
+
+        try {
+
+          const initialDoc = {
+    [uid]: {
+        count: 0, // or any initial value
+    },
+};
+
+// Set the initial document if it doesn't exist
+await setDoc(doc(db, `user_data/${selecteduserid}/notifications/${uid}`), initialDoc, { merge: true });
+
+            // const reff = doc(db, `user_data/${selecteduserid}/notifications/${uid}`);
+
+            // // Use set with merge option to create or update the document
+            // await setDoc(reff, {
+            //     count: increment(1),
+            // }, { merge: true });
+
+            // // Fetch the updated document
+            // const updatedDocSnap = await getDoc(reff);
+
+            // // Check if document exists
+            // if (updatedDocSnap.exists()) {
+            //     // Log the data of the updated document
+            //     notification = updatedDocSnap.data();
+            //     console.log("Updated data:", notification);
+            // } else {
+            //     console.log("Document does not exist");
+            // }
+
+            console.log("Message sent");
+            msg.value = "";
+        } catch (error) {
+            // Handle errors
+            console.error("Error updating document:", error);
+        }
+    }
+});
+
+
+
+
+const getallmsgs = (chatid)=>{
+  const q = query(collection(db, "messeges"), orderBy("time", 'desc'), where("chatID", "==", chatid));
+const unsubscribe = onSnapshot(q, (querySnapshot) => {
+  const msgs = [];
+  querySnapshot.forEach((doc) => {
+      msgs.push(doc.data());
+  });
+
+
+
+
+
+
+chat.innerHTML=""
+for(var i = 0; i < msgs.length; i++){
+  var time = msgs[i].time;
+
+
+  var time = new Date();
+var msgtime = time.toLocaleTimeString('en-US', { timeZone: 'Asia/Karachi' });
+console.log(msgtime);
+  
+// var msgtime = time.toDate().toLocaleTimeString('en-US', { timeZone: 'Asia/Karachi' })
+
+  if(uid === msgs[i].sender_id){
+
+    chat.innerHTML+=`
+<div class="messege-box rightchat mb-2 ">
+${msgs[i].messege} 
+
+<span class="timeshown" >${msgtime}</span>
+</div>
+
+`
+  }
+else{
+  chat.innerHTML+=`
+
+<div class="msg-box leftchat mb-2">
+${msgs[i].messege} 
+<span class="timeshown" >${msgtime}</span>
+</div>
+`
+}
+// var time = msgs[i].time;
+// var dateObject = time.toDate();
+// var hours = dateObject.getHours();
+// var minutes = dateObject.getMinutes();
+
+// console.log(`${hours}:${minutes}`); 
+
+}
+
+  console.log("messeges ", msgs);
+
+});
+chat.innerText= ""
+}
+
+const setactivestatus= async(status, uid)=>{
+console.log(uid)
+const reff = doc(db,"user_data", uid )
+await updateDoc(reff,{
+  isActive:status
+})
+
+}
+window.addEventListener("onbeforeunload",()=>{
+  setactivestatus(false, uid)
+})
+window.addEventListener("focus",()=>{
+  setactivestatus(true, uid)
+
+})
+
+
+window.setactivestatus=setactivestatus
+
+</script>
+
+</body>
+</html>
